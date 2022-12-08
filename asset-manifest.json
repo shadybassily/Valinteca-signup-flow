@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/Valinteca-signup-flow/static/css/main.fdaa0a7b.css",
+    "main.js": "/Valinteca-signup-flow/static/js/main.2c229bd4.js",
+    "static/media/succeed.svg": "/Valinteca-signup-flow/static/media/succeed.54b049171775783817a84f60f3c6a0f2.svg",
+    "static/media/signup.svg": "/Valinteca-signup-flow/static/media/signup.0a98c3bde541fb5f82e4ae917b972e01.svg",
+    "static/media/welcome-page.svg": "/Valinteca-signup-flow/static/media/welcome-page.1c40899980a53e1743cc855fa703be46.svg",
+    "index.html": "/Valinteca-signup-flow/index.html",
+    "main.fdaa0a7b.css.map": "/Valinteca-signup-flow/static/css/main.fdaa0a7b.css.map",
+    "main.2c229bd4.js.map": "/Valinteca-signup-flow/static/js/main.2c229bd4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fdaa0a7b.css",
+    "static/js/main.2c229bd4.js"
+  ]
+}
