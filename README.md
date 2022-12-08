@@ -17,6 +17,8 @@ The requirements were:
 The form validation was handled using react-hook-form and yup.
 yup is used to create a schema that will determine the shape of the form inputs, and put the desired constrains, like min and max characters, email validation, and matching passwords, if the user fail to follow any of the formats, an error message will be displayed.
 
+The icons used on the form is from react-icons library.
+
 After validating the use inputs in the client side, a post request is sent using fetch method, and to direct the user to the success sign-up page, depends on the response we get from the API.
 
 One extra validation done by the backend is the password format validation, if there is an error, the user will not be directed to the desired page, and an error message will be displayed to inform the user of the error they enconuntered.
