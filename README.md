@@ -2,6 +2,28 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+This simple Sign-Up flow was created using create-react-app.
+
+consists of 3 main pages, the welcome, sign up, and successful sign up pages.
+all 3 pages were build using a reusable PageTemplate component, passing the necessary data as props.
+
+The requirements were:
+1. To sign the user up using a username that must consists of letters and numbers only, and usernames can't start or end with numbers,
+2. Validate the email to be in the right format.
+3. A password that must be at least 8 characters.
+4. A password confirmation.
+5. extra: show password feature.
+
+The form validation was handled using react-hook-form and yup.
+yup is used to create a schema that will determine the shape of the form inputs, and put the desired constrains, like min and max characters, email validation, and matching passwords, if the user fail to follow any of the formats, an error message will be displayed.
+
+After validating the use inputs in the client side, a post request is sent using fetch method, and to direct the user to the success sign-up page, depends on the response we get from the API.
+
+One extra validation done by the backend is the password format validation, if there is an error, the user will not be directed to the desired page, and an error message will be displayed to inform the user of the error they enconuntered.
+
+If there are no client-side or server-side errors,the email the user entered will be saved to local storage under "emai" property, and they will be redirected to the success page, the user will see a welcome message the email will be displayed.
+
+
 ## Available Scripts
 
 In the project directory, you can run:
