@@ -44,7 +44,7 @@
 }
 
 #sub-head {
-  width: fit-content;
+  width: 100%;
   padding: 10px 0px;
   font-family: "Mulish";
   font-style: normal;
@@ -96,12 +96,12 @@
   flex-grow: 0;
 }
 
-@media (width >900px) {
+@media (width >660px) {
   body{
     background-image: linear-gradient(
       95deg,
-      rgba(223, 82, 82, 0.338),
-      rgba(0, 0, 255, 0.502),
+      rgba(236, 79, 79, 0.611),
+      rgba(90, 90, 197, 0.502),
       #fff
     );
     background-repeat: no-repeat;
