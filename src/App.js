@@ -1,3 +1,4 @@
+import './App.css'
 import Welcome from "./pages/Welcome";
 import SignUp from "./pages/SignUp";
 import Succeed from "./pages/Succeed";

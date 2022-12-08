@@ -8,15 +8,11 @@
   box-sizing: border-box;
 
   /* Auto layout */
-
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 8px 15px;
   gap: 5px;
-  width: 315px;
-  height: 60px;
-
   background: #ffffff;
   /* light/blue-4
 
@@ -26,11 +22,6 @@ Hovered UI element background
   border-radius: 10px;
 
   /* Inside auto layout */
-
-  flex: none;
-  order: 0;
-  align-self: stretch;
-  flex-grow: 0;
 }
 
 .icon-holder {
@@ -50,4 +41,8 @@ input[type="password"] {
 
 .signup-form #primary-button {
   margin-top: 15px;
+}
+
+.error-border {
+  border: 1px solid red;
 }

@@ -9,7 +9,7 @@ export default function Welcome() {
       <PageTemplate
         imgSrc={welcomePhoto}
         headLine="Welcome"
-        subHead="Welcome We're glad you're here! Sign up to start browing the website."
+        subHead="Welcome We're glad you're here! Sign up to start."
         button={
           <Link to="sign-up" id="primary-button">
             Get Started

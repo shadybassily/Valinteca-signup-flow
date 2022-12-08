@@ -1,34 +1,95 @@
-import React from 'react'
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 // icons & styles
-import { AiOutlineUser } from 'react-icons/ai';
-import { AiOutlineMail } from 'react-icons/ai';
-import { AiOutlineLock } from 'react-icons/ai';
-import './signup-form.styles.css'
+import { AiOutlineUser, AiOutlineMail, AiOutlineLock } from "react-icons/ai";
+import "./signup-form.styles.css";
 //component
-import FormInput from './FormInput';
+import FormInput from "./FormInput";
 //form validations
-import {useForm} from 'react-hook-form'
-import * as yup from 'yup'
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+//form methods
+import { postData, schema } from "./formMethods";
+
+
 
 export default function SignUpForm() {
-  //a schema to determine the shape of the data entered/required
-  const schema = yup.object().shape({
-    Username:yup.string().required().min(5, "min 5 character").max(15, "max 15 characters").matches(),
-    
-  })
-  const {register, handleSubmit} = useForm()
-  const onSubmit = (data) =>{
-    console.log(data)
-  }
-  // let regex = /^[a-z][0-9][a-z]$/ig
-  // console.log(regex.test("shady0ss"))
+  const navigate = useNavigate();
+
+  //integrating schema with the react-form-hook using resolvers
+  const {register,handleSubmit,formState: { errors }} = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  
+  //reset the api error if the user starts re-typing
+  const [apiPasswordError, setApiPasswordError] = useState(null);
+  const handlePasswordInput = () => {
+    setApiPasswordError(null);
+  };
+
+  //handle submit
+  const onSubmit = (data) => {
+    //preparing the data
+    const strigifiedData = JSON.stringify({
+      username: data.username,
+      email: data.email,
+      password: data.password,
+      password_confirmation: data.confirmPassword,
+    });
+
+    postData(
+      "https://goldblv.com/api/hiring/tasks/register",
+      strigifiedData
+    ).then((data) => {
+      //if there are errors
+      data.errors
+        ? setApiPasswordError(data.errors.password)
+        : loginSuccessfult(data);
+    });
+  };
+
+  const loginSuccessfult = (data) => {
+    localStorage.setItem("email", JSON.stringify(data.email));
+    navigate("/succeed");
+  };
+
   return (
-    <form className='signup-form' onSubmit={handleSubmit(onSubmit)}>
-     <FormInput icon={<AiOutlineUser />} placeHolder="Username" type="text" register={register("Username")}/>
-     <FormInput icon={<AiOutlineMail />} placeHolder="Email" type="text" register={register("Email")}/>
-     <FormInput icon={<AiOutlineLock />} placeHolder="Password" type="password" register={register("Password")}/>
-     <FormInput icon={<AiOutlineLock />} placeHolder="Confirm Password" type="password" register={register("Confirm Password")}/>
-     <button type='submit' id="primary-button">Create Account</button>
+    <form className="signup-form" onSubmit={handleSubmit(onSubmit)}>
+      <FormInput
+        icon={<AiOutlineUser />}
+        placeHolder="Username"
+        type="text"
+        errorMessage={errors.username?.message}
+        register={register("username")}
+      />
+
+      <FormInput
+        icon={<AiOutlineMail />}
+        placeHolder="Email"
+        type="text"
+        errorMessage={errors.email?.message}
+        register={register("email")}
+      />
+
+      <FormInput
+        icon={<AiOutlineLock />}
+        placeHolder="Password"
+        type="password"
+        errorMessage={errors.password?.message || apiPasswordError}
+        register={register("password")}
+        handlePasswordInput={handlePasswordInput}
+      />
+      <FormInput
+        icon={<AiOutlineLock />}
+        placeHolder="Confirm Password"
+        type="password"
+        errorMessage={errors.confirmPassword?.message}
+        register={register("confirmPassword")}
+      />
+      <button type="submit" id="primary-button">
+        Create Account
+      </button>
     </form>
-  )
+  );
 }
